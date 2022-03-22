@@ -3,6 +3,7 @@ package io.hlsg.utils
 import org.apache.spark.sql.SparkSession
 import org.rogach.scallop.{ScallopConf, ScallopOption}
 import io.projectglow.Glow
+import org.apache.spark.sql.functions._
 
 class ArgsVCF2Delta(arguments: Seq[String]) extends ScallopConf(arguments) {
   val vcfPath: ScallopOption[String] = opt[String](required = true, descr = "VCF File Path")
@@ -27,6 +28,7 @@ object VCF2Delta {
       .option("includeSampleIds", "false")
       .option("flattenInfoFields", "true")
       .load(args.vcfPath())
+      .withColumn("names", explode(col("names")))
 
     println("Data Schema:")
     df.printSchema()

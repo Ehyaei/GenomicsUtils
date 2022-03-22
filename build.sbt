@@ -7,6 +7,7 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion % "provided",
   "org.apache.spark" %% "spark-sql" % sparkVersion % "provided",
   "io.projectglow" %% "glow-spark3" % "1.1.2" % "provided",
+  "org.ddahl" %% "rscala" % "3.2.19",
   "io.delta" %% "delta-core" % "1.0.1",
   "org.rogach" %% "scallop" % "3.5.1"
 )
